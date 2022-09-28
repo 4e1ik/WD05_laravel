@@ -21,10 +21,19 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('/')->group(function(){
+
     Route::get('/', SiteController::class);
+    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart']);
+    Route::get('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart']);
+    Route::get('/test', function (){
+//        $product = \App\Models\Product::query()->inRandomOrder()->first();
+        $category = \App\Models\Category::query()->inRandomOrder()->first();
+//        $category = \App\Models\Category::findOrFail($product->category_id);
+        dd($category->products);
+//        dd($product->category);
+    });
     Route::get('/store', [SiteController::class, 'store']);
-});
+
 
 
 
