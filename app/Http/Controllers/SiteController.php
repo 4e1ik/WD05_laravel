@@ -38,4 +38,12 @@ class SiteController extends Controller
         $categories = Category::withCount('products')->get();
         return view('site.store', compact('products', 'categories'));
     }
+
+    public function product(Request $request, $category_id, $product_id){
+        $product = Product::where('active', 1)
+            ->where('category_id', $category_id)
+            ->where('id', $product_id)
+            ->firstOrFail();
+        return view('catalog.product', compact('product'));
+    }
 }

@@ -23,15 +23,16 @@ use Illuminate\Support\Facades\Storage;
 */
 
     Route::get('/', SiteController::class);
-    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart']);
-    Route::get('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart']);
-    Route::get('/test', function (){
-//        $product = \App\Models\Product::query()->inRandomOrder()->first();
-        $category = \App\Models\Category::query()->inRandomOrder()->first();
-//        $category = \App\Models\Category::findOrFail($product->category_id);
-        dd($category->products);
-//        dd($product->category);
+    Route::get('/catalog/{category_id/{product_id}}', [SiteController::class, 'product'])->name('product_page');
+    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
+    Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
+    Route::post('/test', function (\Illuminate\Http\Request $request){
+
+        $data = $request->all();
+        return response()->json($data)->setStatusCode(401);
+
     });
+
     Route::get('/store', [SiteController::class, 'store']);
 
 
