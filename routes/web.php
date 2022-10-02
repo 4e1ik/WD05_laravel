@@ -21,12 +21,10 @@ use Illuminate\Support\Facades\Storage;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('/')->group(function(){
     Route::get('/', SiteController::class);
     Route::get('/store', [SiteController::class, 'store']);
-});
-
-
+    Route::get('/catalog/{category_id}/{product_id}', [SiteController::class, 'product'])->name('category_product');
+    Route::get('/catalog/{category_id}', [SiteController::class, 'categoryProducts'])->name('categoryProduct');
 
 Auth::routes();
 
