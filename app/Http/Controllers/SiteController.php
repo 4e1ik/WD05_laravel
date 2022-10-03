@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -23,27 +22,32 @@ class SiteController extends Controller
 
     }
 
-    public function store(Request $request){
-//        dd($request->session()->get('_token2', 'ssss'));
-//    dd(session()->getId());
-//        session()->put('test', '0000');
-        session()->push('test23', '1111111');
-        dump(session()->all());
+    public function store(){
         $products = Product::query()
             ->where('active', 1)
             ->limit(20)
-            ->with('category')
             ->latest()
             ->get();
-        $categories = Category::withCount('products')->get();
+
+        $categories = Category::all();
+
         return view('site.store', compact('products', 'categories'));
     }
 
-    public function product(Request $request, $category_id, $product_id){
+    public function product(Request $request, $category_id, $product_id)
+    {
+
         $product = Product::where('active', 1)
             ->where('category_id', $category_id)
             ->where('id', $product_id)
             ->firstOrFail();
-        return view('catalog.product', compact('product'));
+
+        return view('site.store_product', compact('product', 'product_id', 'category_id'));
+    }
+
+    public function categoryProducts($category_id)
+    {
+        $products = Product::where('active', 1)->where('category_id', $category_id)->get();
+        return view('site.store_categories', compact('products', 'category_id'));
     }
 }

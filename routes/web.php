@@ -34,9 +34,8 @@ use Illuminate\Support\Facades\Storage;
     });
 
     Route::get('/store', [SiteController::class, 'store']);
-
-
-
+    Route::get('/catalog/{category_id}/{product_id}', [SiteController::class, 'product'])->name('category_product');
+    Route::get('/catalog/{category_id}', [SiteController::class, 'categoryProducts'])->name('categoryProduct');
 
 Auth::routes();
 
