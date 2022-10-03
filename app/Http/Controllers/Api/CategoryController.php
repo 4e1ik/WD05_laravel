@@ -7,6 +7,7 @@ use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Mockery\Exception;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(10);
-        return new CategoryCollection($categories);
+//        return new CategoryCollection($categories);
+        return response()->json(new CategoryCollection($categories));
     }
 
     /**
@@ -30,7 +32,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::create($request->all());
-        return new CategoryResource($category);
+//        return new CategoryResource($category);
+
+        try {
+            return new CategoryResource($category);
+        } catch (\Exception $exception){
+            return response()
+                ->json(['errors' => $exception->getMessage()])
+                ->setStatusCode(500);
+        }
+        return response()->json(new CategoryResource($category));
     }
 
     /**
@@ -41,7 +52,19 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return new CategoryResource($category);
+
+//        try {
+//            return new CategoryResource($category);
+//        } catch (\Exception $exception){
+//            return response()
+//                ->json(['errors' => $exception->getMessage()])
+//                ->setStatusCode(500);
+//        }
+        return response()
+            ->json(new CategoryResource($category))
+            ->setStatusCode(201);
+
+
     }
 
     /**
@@ -54,7 +77,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->fill($request->all())->save();
-        return new CategoryResource($category);
+//        return new CategoryResource($category);
+        return response()->json(new CategoryResource($category));
     }
 
     /**

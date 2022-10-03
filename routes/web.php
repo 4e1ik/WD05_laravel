@@ -26,10 +26,64 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/catalog/{category_id/{product_id}}', [SiteController::class, 'product'])->name('product_page');
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
     Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
-    Route::post('/test', function (\Illuminate\Http\Request $request){
+    Route::get('/test', function (\Illuminate\Http\Request $request){
 
-        $data = $request->all();
-        return response()->json($data)->setStatusCode(401);
+//        $data = $request->all();
+//        return response()->json($data)->setStatusCode(401);
+
+//        $client = new \GuzzleHttp\Client();
+//        $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/currencies');
+////        dd($response->getStatusCode());
+//        dd(json_decode($response->getBody()->getContents(), true));
+
+
+//        $client = new \GuzzleHttp\Client([
+//            'base_uri' => 'https://www.nbrb.by/api/' // Для того чтобы не писать длинный url адрес
+//        ]);
+////        $response = $client->request('GET', 'exrates/currencies/145', [
+////            'query' => [ // Для POST параметров используется formFDdata
+////                'ondata' => '2016-7-1',
+////                'periodcity' => 1,
+////            ]
+////        ]);
+//        https://www.nbrb.by/api/exrates/currencies/19
+//        $response = $client->get('exrates/currencies/145', [ //Второй метод отправки
+//            'query' => [ // Для POST параметров используется formFDdata
+//                'ondata' => '2016-7-1',
+//                'periodcity' => 1,
+//            ]
+//        ]);
+//
+//        $response = $client->get('exrates/currencies/19', [ //Второй метод отправки
+//            'query' => [ // Для POST параметров используется formFDdata
+//                'ondata' => '2016-7-1',
+//                'periodcity' => 1,
+//            ]
+//        ]);
+////        dd($response->getStatusCode());
+//        dd(json_decode($response->getBody()->getContents(), true));
+
+
+
+//        $response = \Illuminate\Support\Facades\Http::
+//            acceptJson()->
+//
+//            get('https://www.nbrb.by/api/exrates/currencies/145');
+//        $response = \Illuminate\Support\Facades\Http::
+//            withBasicAuth('login', 'adcsf')->
+//            withToken('wefrvetvwrc', 'sdfcravg')->
+//            post('https://www.nbrb.by/api/exrates/currencies/145', [
+//                'sdcw' => 'adfwef'
+//        ]);
+//        if ($response->failed()){
+//            switch (true){
+//                case $response->clientError();
+//                break;
+//            }
+//        }
+
+        return view('test');
+
 
     });
 
