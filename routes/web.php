@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -27,7 +28,37 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
     Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('/test', function (\Illuminate\Http\Request $request){
+//        $response = \Illuminate\Support\Facades\Http::get('https://www.nbrb.by/api/exrates/currencies');
+//        $currencies = $response->collect()->keyBy('Cur_Abbreviation');
+//        $client = \Illuminate\Support\Facades\Http::baseUrl('http://api.weatherapi.com/v1');
+//        $query = [
+//            'lang' => 'ru',
+//            'type' => 'json',
+//
+//        ];
+//        $client = Http::baseUrl('http://api.weatherapi.com/v1');
+//        $response = $client->get('/current.json', $query);
+//        $result = $response['current']['temp_c'].' C'.' '.$response['location']['name'].' '.$query['dt'];
+//        dump($result);
 
+//        $response = Http::get('https://evilinsult.com/generate_insult.php', $query);
+//        dd($response->json());
+//        foreach ($response->collect()['data'] as $gif){
+//            echo "<video src='{{$gif['embed_url']}}'></video>";
+//        }
+//        return view('test');
+        $mail = new \App\Mail\FirstMail('wdvrv');
+        $res = \Illuminate\Support\Facades\Mail::send($mail);
+        dd($res->getDebug());
+
+    });
+//    Route::post('/test', function (\Illuminate\Http\Request $request){
+//        $query = [
+//          'periodicity' => 0,
+//        ];
+//        $response = \Illuminate\Support\Facades\Http::get('https://www.nbrb.by/api/exrates/currencies', $query);
+//        $response->collect()->keyBy('Cur_Abbreviation');
+//    });
 //        $data = $request->all();
 //        return response()->json($data)->setStatusCode(401);
 
@@ -82,10 +113,10 @@ use Illuminate\Support\Facades\Storage;
 //            }
 //        }
 
-        return view('test');
 
 
-    });
+
+
 
     Route::get('/store', [SiteController::class, 'store']);
     Route::get('/catalog/{category_id}/{product_id}', [SiteController::class, 'product'])->name('category_product');
