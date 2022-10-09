@@ -1,1 +1,1 @@
-{{--{{$mailMessage}}--}}
+{{$mailMessage}}
