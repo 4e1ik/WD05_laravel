@@ -28,6 +28,9 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
     Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('/convert', [\App\Http\Controllers\ConvertController::class, 'convert']);
+
+    Route::get('/uni', [\App\Http\Controllers\UniController::class, 'uni']);
+
     Route::get('/test', function (\Illuminate\Http\Request $request){
 //        $response = \Illuminate\Support\Facades\Http::get('https://www.nbrb.by/api/exrates/currencies');
 //        $currencies = $response->collect()->keyBy('Cur_Abbreviation');
