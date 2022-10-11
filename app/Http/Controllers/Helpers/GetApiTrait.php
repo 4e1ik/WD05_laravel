@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Helpers;
 
-class GetApiNBRBController extends Controller
+
+trait GetApiTrait
 {
     public function getCurr(){
 

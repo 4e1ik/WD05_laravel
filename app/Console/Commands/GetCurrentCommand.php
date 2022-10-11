@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\HelpController;
+use App\Http\Controllers\Helpers\ArrCurClass;
+use App\Http\Controllers\Helpers\ConvertCommandClass;
 use App\Mail\CurrentMail;
 use Illuminate\Console\Command;
 use App\Http\Controllers\ConvertController;
@@ -34,13 +35,13 @@ class GetCurrentCommand extends Command
 //        try {
 //            if()
 //        } catch ()
-        $help = new HelpController();
+        $help = new ArrCurClass();
         $howMany = $this->ask('Какое колличество денег вы хотите поменять?');
 
         $from = $this->choice('Какой валюты?(Аббревиатура или полное название, например USD или Доллар США)', $help->convAbb());
         $to = $this->choice('В какую валюту?(Аббревиатура или полное название, например EUR или Евро)', $help->convAbb());
 
-        $convert = new ConvertController($howMany, $from, $to);
+        $convert = new ConvertCommandClass($howMany, $from, $to);
 
         $mailQ = $this->choice('Хотите отправить письмо на почту?', ['Да','Нет']);
         if($mailQ == 'Да'){

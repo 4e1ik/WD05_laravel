@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Helpers;
 
-class HelpController extends Controller
+
+class ArrCurClass
 {
-
+    use GetApiTrait;
     public function convAbb(){
-        $curr = new GetApiNBRBController();
 
-        $helpData = json_decode($curr->getCurr()->getBody()->getContents(), true);
+        $helpData = json_decode($this->getCurr()->getBody()->getContents(), true);
 
         $dataAbbConvertible = [];
         for($i = 0; $i < count($helpData); $i++){
