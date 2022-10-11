@@ -51,9 +51,14 @@ use Illuminate\Support\Facades\Storage;
 //            echo "<video src='{{$gif['embed_url']}}'></video>";
 //        }
 //        return view('test');
-        $mail = new \App\Mail\FirstMail('wdvrv');
-        $res = \Illuminate\Support\Facades\Mail::send($mail);
-        dd($res->getDebug());
+//        $mail = new \App\Mail\FirstMail('wdvrv');
+//        $res = \Illuminate\Support\Facades\Mail::send($mail);
+//        dd($res->getDebug());
+
+//        $job = new \App\Jobs\FirstJob('artem hello');
+//        $job->dispatch('artem hello');
+        \App\Jobs\FirstJob::dispatch('artem hello')->onQueue('ololo');
+        \App\Jobs\FirstJob::dispatch('artem hello');
 
     });
 //    Route::post('/test', function (\Illuminate\Http\Request $request){
