@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('parse:nbrb')->everyMinute();
+//        $schedule->command('parse:nbrb')->everyMinute();
+        $schedule->command('save:current')->daily();
+//        $schedule->command('get:current')->everyMinute();
         // $schedule->command('inspire')->hourly();
     }
 
