@@ -27,12 +27,13 @@ class FirstCommand extends Command
      */
     public function handle()
     {
-        if(!$this->argument('currency')){
-            $currency = $this->ask('какую валюту вы хотите поменять?');
-            $this->info($currency);
-        }
-//        $this->argument('currency');
-//        $this->info($this->option('queu'));
-        return 0;
+        $this->info('sdvcsrfd');
+//        if(!$this->argument('currency')){
+//            $currency = $this->ask('какую валюту вы хотите поменять?');
+//            $this->info($currency);
+//        }
+////        $this->argument('currency');
+////        $this->info($this->option('queu'));
+//        return 0;
     }
 }
