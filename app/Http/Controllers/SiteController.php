@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+
+
     public function __invoke()
     {
+
         //select * from products where active = 1 and category_id = 1 order by id desc
         $latestProducts = Product::query()
             ->where('active', 1)
@@ -19,7 +23,6 @@ class SiteController extends Controller
 //        $collection[] = 11;
 //        dump($collection);
         return view('site.index', compact('latestProducts'));
-
     }
 
     public function store(){
@@ -36,7 +39,6 @@ class SiteController extends Controller
 
     public function product(Request $request, $category_id, $product_id)
     {
-
         $product = Product::where('active', 1)
             ->where('category_id', $category_id)
             ->where('id', $product_id)

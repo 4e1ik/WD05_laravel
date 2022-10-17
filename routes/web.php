@@ -32,34 +32,8 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/uni', [\App\Http\Controllers\UniController::class, 'uni']);
 
     Route::get('/test', function (\Illuminate\Http\Request $request){
-//        $response = \Illuminate\Support\Facades\Http::get('https://www.nbrb.by/api/exrates/currencies');
-//        $currencies = $response->collect()->keyBy('Cur_Abbreviation');
-//        $client = \Illuminate\Support\Facades\Http::baseUrl('http://api.weatherapi.com/v1');
-//        $query = [
-//            'lang' => 'ru',
-//            'type' => 'json',
-//
-//        ];
-//        $client = Http::baseUrl('http://api.weatherapi.com/v1');
-//        $response = $client->get('/current.json', $query);
-//        $result = $response['current']['temp_c'].' C'.' '.$response['location']['name'].' '.$query['dt'];
-//        dump($result);
-
-//        $response = Http::get('https://evilinsult.com/generate_insult.php', $query);
-//        dd($response->json());
-//        foreach ($response->collect()['data'] as $gif){
-//            echo "<video src='{{$gif['embed_url']}}'></video>";
-//        }
-//        return view('test');
-//        $mail = new \App\Mail\FirstMail('wdvrv');
-//        $res = \Illuminate\Support\Facades\Mail::send($mail);
-//        dd($res->getDebug());
-
-//        $job = new \App\Jobs\FirstJob('artem hello');
-//        $job->dispatch('artem hello');
-        \App\Jobs\FirstJob::dispatch('artem hello')->onQueue('ololo');
-        \App\Jobs\FirstJob::dispatch('artem hello');
-
+//        \Illuminate\Support\Facades\App::setLocale('ru');
+        dd( __('welcome.welcome_text', ['name' => 'Amigo']));
     });
 //    Route::post('/test', function (\Illuminate\Http\Request $request){
 //        $query = [

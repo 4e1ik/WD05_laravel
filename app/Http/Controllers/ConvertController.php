@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Helpers\GetApiTrait;
+use App\Interfaces\CurServiceInterface;
+use App\Services\CurrencyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class ConvertController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->service = $service;
+    }
+
     public function convert(Request $request)
     {
+//        $this->service->getRate();
+
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates?periodicity=0');
         $response2 = $client->request('GET', 'https://www.nbrb.by/api/exrates/rates?periodicity=0');
