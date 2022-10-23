@@ -32,8 +32,10 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/uni', [\App\Http\Controllers\UniController::class, 'uni']);
 
     Route::get('/test', function (\Illuminate\Http\Request $request){
-//        \Illuminate\Support\Facades\App::setLocale('ru');
-        dd( __('welcome.welcome_text', ['name' => 'Amigo']));
+
+        $user = \App\Models\User::query()->inRandomOrder()->first();
+        \App\Events\ProductAddedEvent::dispatch($user);
+
     });
 //    Route::post('/test', function (\Illuminate\Http\Request $request){
 //        $query = [
