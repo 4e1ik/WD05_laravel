@@ -15,7 +15,7 @@ class DiProvider extends ServiceProvider
      */
     public function register()
     {
-        dump('register');
+//        dump('register');
     }
 
     /**
