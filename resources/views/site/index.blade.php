@@ -53,7 +53,10 @@
         <!-- /container -->
     </div>
     <!-- /SECTION -->
-
+    <x-alert :h1="'sfvdsfvd'">
+        <span>sdcsdc</span>
+        <h2>sdcsdfctryty</h2>
+    </x-alert>>
     <!-- SECTION -->
     <div class="section">
         <!-- container -->

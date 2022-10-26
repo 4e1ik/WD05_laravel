@@ -32,10 +32,9 @@ use Illuminate\Support\Facades\Storage;
     Route::get('/uni', [\App\Http\Controllers\UniController::class, 'uni']);
 
     Route::get('/test', function (\Illuminate\Http\Request $request){
-
-        $user = \App\Models\User::query()->inRandomOrder()->first();
-        \App\Events\ProductAddedEvent::dispatch($user);
-
+//        \Illuminate\Support\Facades\Redis::set('my_var', 123456);
+        dd(\Illuminate\Support\Facades\Redis::set('ss', 444));
+        \Illuminate\Support\Facades\Redis::get('my_var');
     });
 //    Route::post('/test', function (\Illuminate\Http\Request $request){
 //        $query = [
